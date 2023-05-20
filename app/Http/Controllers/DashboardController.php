@@ -24,7 +24,7 @@ class DashboardController extends Controller
         $station_data_minmax = BmdStationDataRaw::where("stCode", $station_code)
             ->select(DB::raw('date(date_time) as event_date'), DB::raw('max(maximum_temp) as max_temp'), DB::raw('min(minimum_temp) as min_temp'))
             ->groupBy(DB::raw('event_date'))
-            ->orderBy("date_time", "desc")
+            ->orderBy(DB::raw('event_date'), "desc")
             ->limit(31)
             ->get()
             ->reverse();
