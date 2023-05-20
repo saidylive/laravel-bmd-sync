@@ -28,7 +28,6 @@ class SyncBMDStationData extends Command
      */
     public function handle()
     {
-        // $this->sync_stations(true);
         $this->sync_stations_data();
     }
 
@@ -45,36 +44,23 @@ class SyncBMDStationData extends Command
     {
         $stationData = BmdDataFetch::getStationData($station_code);
         foreach ($stationData as $row) {
-            $systemData = BmdStationDataRaw::find($row["id"]);
-            if (!$systemData) {
-                BmdStationDataRaw::create($row);
-                $this->info("Station Record Inserted : {$row['id']}");
-            } else {
-                if ($should_update) {
-                    if (isset($row["id"])) unset($row["id"]);
-                    $systemData->update($row);
-                    $this->info("Station Record Updated : {$systemData->id}");
+            try {
+                $systemData = BmdStationDataRaw::find($row["id"]);
+                if (!$systemData) {
+                    BmdStationDataRaw::create($row);
+                    $this->info("Station Record Inserted : {$row['id']}");
+                } else {
+                    if ($should_update) {
+                        if (isset($row["id"])) unset($row["id"]);
+                        $systemData->update($row);
+                        $this->info("Station Record Updated : {$systemData->id}");
+                    }
                 }
+            } catch (\Exception $e) {
+                $this->error($e->getMessage());
+                $this->info(json_encode($row, JSON_PRETTY_PRINT));
             }
         }
-        // $this->info(json_encode($stationData, JSON_PRETTY_PRINT));
     }
 
-    private function sync_stations($should_update = false)
-    {
-        $stations = BmdDataFetch::getStationList();
-        foreach ($stations as $station) {
-            $systemStation = BmdStation::where("code", $station["code"])->first();
-            if (!$systemStation) {
-                BmdStation::create($station);
-                $this->info("Station created : {$station['code']}");
-            } else {
-                if ($should_update) {
-                    if (isset($station["id"])) unset($station["id"]);
-                    $systemStation->update($station);
-                    $this->info("Station Updated : {$station['code']}");
-                }
-            }
-        }
-    }
 }

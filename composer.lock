@@ -2937,16 +2937,16 @@
         },
         {
             "name": "saidy/bmd-station-data-fetch",
-            "version": "1.0.6",
+            "version": "1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/saidylive/BMD-Station-Data-Fetcher.git",
-                "reference": "3d74114953373b7b5026b3f2574447043e6b9fea"
+                "reference": "eb80046432597ae6c688140e4221c0ecc7e9977f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/saidylive/BMD-Station-Data-Fetcher/zipball/3d74114953373b7b5026b3f2574447043e6b9fea",
-                "reference": "3d74114953373b7b5026b3f2574447043e6b9fea",
+                "url": "https://api.github.com/repos/saidylive/BMD-Station-Data-Fetcher/zipball/eb80046432597ae6c688140e4221c0ecc7e9977f",
+                "reference": "eb80046432597ae6c688140e4221c0ecc7e9977f",
                 "shasum": ""
             },
             "require": {
@@ -2971,9 +2971,9 @@
             "description": "Get current station data of BMD live station data from https://live3.bmd.gov.bd",
             "support": {
                 "issues": "https://github.com/saidylive/BMD-Station-Data-Fetcher/issues",
-                "source": "https://github.com/saidylive/BMD-Station-Data-Fetcher/tree/v1.0.6"
+                "source": "https://github.com/saidylive/BMD-Station-Data-Fetcher/tree/v1.0.10"
             },
-            "time": "2023-04-19T17:49:45+00:00"
+            "time": "2023-05-20T11:53:13+00:00"
         },
         {
             "name": "symfony/console",
